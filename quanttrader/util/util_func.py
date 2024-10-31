@@ -10,7 +10,7 @@ from datetime import datetime
 def read_ohlcv_csv(filepath, adjust=True, tz='America/New_York'):
     df = pd.read_csv(filepath, header=0, parse_dates=True, sep=',', index_col=0)
     df.index = df.index + pd.DateOffset(hours=16)
-    df.index = df.index.tz_localize(tz)        # US/Eastern, UTC
+    # df.index = df.index.tz_localize(tz)        # US/Eastern, UTC
     # df.index = pd.to_datetime(df.index)
     if adjust:
         df['Open'] = df['Adj Close'] / df['Close'] * df['Open']
